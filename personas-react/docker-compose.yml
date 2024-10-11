@@ -1,0 +1,39 @@
+services:
+  postgresql:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: persons
+      POSTGRES_PASSWORD: persons
+    ports:
+      - "5432:5432"
+    networks:
+      - mynetwork
+
+  backend:
+    image: santiagoandresdavid/backend-activity-image:latest
+    depends_on:
+      - postgresql
+    ports:
+      - "8000:8000"
+    networks:
+      - mynetwork
+    environment:
+      DATABASE_USER: persons
+      DATABASE_PASSWORD: persons
+      DATABASE_HOST: personas-react-postgresql-1
+      DATABASE_NAME: persons
+
+  frontend:
+    image: frontend-activity-image:latest 
+    depends_on:
+      - postgresql
+    ports:
+      - "80:80"
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    name: "red-test"
+    driver: bridge
+    external: true

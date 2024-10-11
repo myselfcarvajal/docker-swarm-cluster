@@ -1,0 +1,190 @@
+{
+	"info": {
+		"_postman_id": "8d242e00-4de5-49ef-b1c7-cd7d9256e28f",
+		"name": "backend-devops-nodejs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32094068"
+	},
+	"item": [
+		{
+			"name": "personas",
+			"item": [
+				{
+					"name": "/personas",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/personas",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"personas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/personas/:id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/personas/c2e78220-93d9-4452-bbba-24f35c0cfef5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"personas",
+								"c2e78220-93d9-4452-bbba-24f35c0cfef5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/personas",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const min = 463412;\r",
+									"const max = 2000000;\r",
+									"const largeRandomInt = Math.floor(Math.random() * (max - min + 1)) + min;\r",
+									"const largeRandomIntString = largeRandomInt.toString();\r",
+									"pm.environment.set(\"largeRandomInt\", largeRandomIntString);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tipo_identificacion\": \"CEDULA\",\r\n    \"numero_identificacion\": \"{{largeRandomInt}}\",\r\n    \"nombre1\": \"{{$randomFirstName}}\",\r\n    \"nombre2\": \"{{$randomFirstName}}\",\r\n    \"apellido1\": \"{{$randomLastName}}\",\r\n    \"apellido2\": \"{{$randomLastName}}\",\r\n    \"sexo\": \"M\",\r\n    \"fecha_nacimiento\": \"1990-05-15\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/personas",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"personas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/personas/:id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tipo_identificacion\": \"PASAPORTE\",\r\n    \"numero_identificacion\": \"1369850\",\r\n    \"nombre1\": \"Clyde\",\r\n    \"nombre2\": \"Torrey\",\r\n    \"apellido1\": \"Romaguera\",\r\n    \"apellido2\": \"Gleason\",\r\n    \"sexo\": \"M\",\r\n    \"fecha_nacimiento\": \"1995-05-15\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/personas/5e089910-2dc4-4bd3-9a7c-902a10678b51",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"personas",
+								"5e089910-2dc4-4bd3-9a7c-902a10678b51"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/personas",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/personas/a2c61562-dd8a-4954-b373-7647c52e7454",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"personas",
+								"a2c61562-dd8a-4954-b373-7647c52e7454"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:3000/api/backend-nodejs"
+		}
+	]
+}

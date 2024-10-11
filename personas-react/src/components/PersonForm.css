@@ -1,0 +1,108 @@
+.person-form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', sans-serif;
+}
+
+.person-form h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #555;
+}
+
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group select {
+  width: calc(100% - 20px);
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-size: 16px;
+  background-color: #f9f9f9;
+  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="date"]:focus,
+.form-group select:focus {
+  background-color: #fff;
+  border-color: #4CAF50;
+  outline: none;
+}
+
+.form-group input[type="text"]::placeholder {
+  color: #aaa;
+}
+
+.form-group select {
+  -webkit-appearance: none; /* Removes default styles in WebKit browsers */
+  -moz-appearance: none; /* Removes default styles in Firefox */
+  appearance: none; /* Removes default styles in other browsers */
+  background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iNTAiIHZpZXdCb3g9IjAgMCAxMDAgNTAiPjxnPjxwYXRoIGQ9Ik0wIDBoMTBhMTEgMTEgMCAwIDAgMCAxMCAxMEgxMCIgZmlsbD0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxMCIgc3Ryb2tlLWxpbmVjYy1zdHJva2UtbGluZWNhcD0iYmFzZSIgc3Ryb2tlLWxpbmVjYz0ibm9uZSIgc3Ryb2tlLWxpbmVjLXdpZHRoPSIxMCIgc3Ryb2tlLWxpbmVjLXdpZHRoPSIxMCIvPjwvcGF0aD48L2c+PC9zdmc+') no-repeat right center;
+  background-size: 20px;
+}
+
+.form-group select option {
+  font-size: 16px;
+}
+
+.submit-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  width: 100%;
+  box-sizing: border-box;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.submit-button:hover {
+  background-color: #45a049;
+  transform: scale(1.02);
+}
+
+.submit-button:active {
+  background-color: #3e8e41;
+  transform: scale(1);
+}
+
+@media (max-width: 768px) {
+  .person-form {
+    padding: 15px;
+  }
+
+  .form-group label {
+    font-size: 14px;
+  }
+
+  .form-group input[type="text"],
+  .form-group input[type="date"],
+  .form-group select {
+    font-size: 14px;
+  }
+
+  .submit-button {
+    font-size: 16px;
+  }
+}

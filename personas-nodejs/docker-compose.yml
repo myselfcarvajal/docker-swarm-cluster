@@ -1,0 +1,60 @@
+version: '3.8'
+services:
+  devops-db:
+    image: postgres
+    container_name: devops-db
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    networks:
+      - network-devops
+    volumes:
+      - postgres_devops:/var/lib/postgresql/data
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: devops-rest-api
+    environment:
+      - PORT=${PORT}
+      - DATABASE_URL=postgresql://${DB_USER}:${DB_PASSWORD}@devops-db:5432/${POSTGRES_DB}?schema=public
+    networks:
+      - network-devops
+    ports:
+      - '${PORT}:3000'
+    depends_on:
+      - devops-db
+    command: >
+      sh -c "
+        until nc -z devops-db 5432; do
+          echo 'Waiting for database...';
+          sleep 3;
+        done;
+        npx prisma migrate dev
+        npm run start:dev
+      "
+
+  
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=pgadmin4
+    networks:
+      - network-devops
+    ports:
+      - '8080:80'
+    depends_on:
+      - devops-db
+
+volumes:
+  postgres_devops:
+
+networks:
+  network-devops:
+    driver: bridge
